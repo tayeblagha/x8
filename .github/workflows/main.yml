@@ -30,7 +30,7 @@ jobs:
     - name: Run paramspider and Gxss
       run: |
         cargo build --release
-        ./target/release/x8 -u "http://testphp.vulnweb.com/search.php"
+        ./target/release/x8 -u "http://testphp.vulnweb.com/search.php" -w "burp-parameter-names.txt"
 
         
 
