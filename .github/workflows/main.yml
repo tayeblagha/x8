@@ -35,7 +35,7 @@ jobs:
 
     - name: Test        
       run: |
-        ./target/release/x8 -u "http://testphp.vulnweb.com/search.php" -w "burp-parameter-names.txt" -o result.txt
+        ./target/release/x8 -u "http://testphp.vulnweb.com/listproducts.php" -w "burp-parameter-names.txt" -o result.txt
 
 
     - name: Result        
