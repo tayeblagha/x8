@@ -25,7 +25,6 @@ jobs:
 
     - name: Build
       run: |
-        cd /path/to/project
         cargo build --release
           
     - name: Test
