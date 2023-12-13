@@ -26,7 +26,11 @@ jobs:
       run: rustup component add cargo
 
     - name: Go to repository root
-      run: cd $GITHUB_WORKSPACE
+      run: |
+        cd $GITHUB_WORKSPACE
+        ls
+        cd ..
+        ls
 
     - name: Build
       run: |
