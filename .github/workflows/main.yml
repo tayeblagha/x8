@@ -24,7 +24,7 @@ jobs:
 
     - name: Build
       run: |
-        cd ./
+        cd /home
         cargo build --release
           
     - name: Test
