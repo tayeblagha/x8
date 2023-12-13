@@ -1,40 +1,35 @@
-name: Rust Build
+name: Build and Test
 
-on:
-  push:
-    branches:
-      - main  # Update with your main branch name
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install Rust
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Update system
       run: |
+        sudo apt-get -y update
+        sudo apt-get -y upgrade
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get -y install golang-go
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    - name: Setup Rust environment
-      run: source $HOME/.cargo/env
 
-    - name: Install Waybackurls
-      run: go install github.com/tomnomnom/waybackurls@latest
-
-    - name: Add Waybackurls to PATH
-      run: echo "export PATH=$HOME/go/bin:$PATH" >> $HOME/.bashrc
-
-    - name: Install Cargo
-      run: rustup component add cargo
-
-    - name: Go to repository root
+    - name: Build and Install dalfox
       run: |
-        cd $GITHUB_WORKSPACE
-        ls
-        cd ..
-        ls
+        go install github.com/tomnomnom/waybackurls@latest
+        sudo cp /home/runner/go/bin/waybackurls /usr/local/bin
 
-    - name: Build
+
+
+    - name: Run paramspider and Gxss
       run: |
         cargo build --release
-          
-    - name: Test
-      run: waybackurls --help
+        
+
+
