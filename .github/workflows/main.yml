@@ -8,7 +8,8 @@ jobs:
 
     steps:
     - name: Install Rust
-      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+      run: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
     - name: Setup Rust environment
       run: source $HOME/.cargo/env
