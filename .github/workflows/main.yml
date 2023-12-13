@@ -1,0 +1,31 @@
+name: Rust Install
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install Rust
+      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+    - name: Setup Rust environment
+      run: source $HOME/.cargo/env
+
+    - name: Install Waybackurls
+      run: go install github.com/tomnomnom/waybackurls@latest
+
+    - name: Add Waybackurls to PATH
+      run: echo "export PATH=$HOME/go/bin:$PATH" >> $HOME/.bashrc
+
+    - name: Install Cargo
+      run: rustup component add cargo
+
+    - name: Build
+      run: |
+        cd /path/to/project
+        cargo build --release
+          
+    - name: Test
+      run: waybackurls --help
