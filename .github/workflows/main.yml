@@ -1,6 +1,9 @@
-name: Rust Install
+name: Rust Build
 
-on: [push]
+on:
+  push:
+    branches:
+      - main  # Update with your main branch name
 
 jobs:
   build:
@@ -22,9 +25,11 @@ jobs:
     - name: Install Cargo
       run: rustup component add cargo
 
+    - name: Go to repository root
+      run: cd $GITHUB_WORKSPACE
+
     - name: Build
       run: |
-        cd /home
         cargo build --release
           
     - name: Test
