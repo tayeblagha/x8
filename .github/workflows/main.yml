@@ -10,7 +10,6 @@ jobs:
     - name: Install Rust
       run: |
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
     - name: Setup Rust environment
       run: source $HOME/.cargo/env
 
@@ -25,7 +24,8 @@ jobs:
 
     - name: Build
       run: |
-        ./cargo build --release
+        cd ./
+        cargo build --release
           
     - name: Test
       run: waybackurls --help
